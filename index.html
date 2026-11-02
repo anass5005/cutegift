@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#190f1b">
+  <title>To My Favorite Person ♡</title>
+  <style>
+    :root {
+      --bg: #190f1b;
+      --pink: #f2adc2;
+      --cream: #fff2ed;
+      --muted: #d9bdc7;
+      --wine: #71334f;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--cream); background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+    button { font: inherit; }
+    .serif { font-family: Georgia, "Times New Roman", serif; }
+    .gradient {
+      color: #f3c0d0;
+      background: linear-gradient(120deg, #f6c8d5, #dc8caf, #f4d9c8);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero {
+      min-height: 100svh; display: grid; place-items: center; text-align: center;
+      padding: 5rem 1.5rem; position: relative; overflow: hidden;
+      background: radial-gradient(ellipse at 50% 42%, #5a2c47 0%, #2b192c 55%, #190f1b 100%);
+    }
+    .hero-content { max-width: 650px; position: relative; z-index: 2; animation: rise .9s both; }
+    .eyebrow { color: #e8a9bf; font-size: .68rem; letter-spacing: .25em; text-transform: uppercase; font-weight: 700; }
+    h1 { font-size: clamp(2.7rem, 8vw, 5.3rem); line-height: 1.08; font-weight: 400; margin: 1.1rem 0; }
+    .hero p { color: #e7cbd4; line-height: 1.9; max-width: 510px; margin: 0 auto 2rem; }
+    .hero-heart { font-size: 3.5rem; color: #f1b4c9; filter: drop-shadow(0 0 20px #e9a2bb); }
+    .btn {
+      border: 1px solid #e9a8bd80; color: white; cursor: pointer;
+      border-radius: 999px; padding: .9rem 1.5rem;
+      background: linear-gradient(110deg, #77334f, #a34d70);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px #df82a744; }
+    .hint { color: #c9aeb9; font-size: .75rem; margin-top: 1.6rem; }
+    .star, .floating-heart { position: absolute; pointer-events: none; }
+    .star { width: 3px; height: 3px; border-radius: 50%; background: #ffe5ec; box-shadow: 0 0 8px #ffc2d7; animation: twinkle 3s infinite alternate; }
+    .floating-heart { color: #f2a3bd88; font-size: 2rem; animation: float 7s ease-in-out infinite; }
+    @keyframes twinkle { to { opacity: .2; transform: scale(.5); } }
+    @keyframes float { 50% { transform: translateY(-22px) rotate(12deg); } }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 50% { transform: scale(1.12); filter: drop-shadow(0 0 22px #ed8eae); } }
+    .hidden { display: none !important; }
+    nav {
+      position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between;
+      align-items: center; gap: 1rem; padding: 1rem max(5vw, 1rem);
+      background: #190f1bee; backdrop-filter: blur(14px); border-bottom: 1px solid #ffffff12;
+    }
+    nav .brand { font-family: Georgia, serif; font-size: 1.2rem; }
+    nav .links { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    nav a { color: #e9c9d2; font-size: .78rem; text-decoration: none; cursor: pointer; }
+    nav a:hover { color: white; }
+    .section { max-width: 900px; margin: auto; padding: 5.5rem 1.4rem; text-align: center; }
+    h2 { font-size: clamp(2rem, 5vw, 3.1rem); font-weight: 400; line-height: 1.2; margin: .8rem 0 1.4rem; }
+    .subtle { color: var(--muted); font-size: .88rem; line-height: 1.8; }
+    .letter {
+      max-width: 690px; margin: 2.3rem auto 0; padding: clamp(1.5rem, 5vw, 3rem);
+      background: linear-gradient(140deg, #fff4ed, #f8e5e2); color: #583346;
+      text-align: left; line-height: 1.9; box-shadow: 0 20px 65px #0005;
+      transform: rotate(-.35deg);
+    }
+    .letter p { margin: 1rem 0; }
+    .letter .salutation { font: 1.7rem Georgia, serif; }
+    .panel {
+      max-width: 620px; margin: 2rem auto 0; padding: 2.5rem 1.5rem;
+      background: linear-gradient(145deg, #ffffff0c, #ffffff04);
+      border: 1px solid #f4c0d01c; border-radius: 18px;
+      box-shadow: 0 0 45px #e98eae18;
+    }
+    .count { color: #e8a6bc; font-size: .7rem; letter-spacing: .2em; }
+    .reason { min-height: 5rem; display: grid; place-items: center; font: clamp(1.45rem, 4vw, 2rem) Georgia, serif; animation: rise .4s both; }
+    .universe {
+      position: relative; overflow: hidden; min-height: 390px; border-radius: 22px;
+      padding: 5rem 1.5rem; display: grid; place-content: center;
+      background: radial-gradient(ellipse at 50% 45%, #512849 0%, #28152f 48%, #160e20 100%);
+    }
+    .moon { position: absolute; right: 12%; top: 12%; font-size: 3.5rem; filter: drop-shadow(0 0 25px #ffe5bd); }
+    .universe h2, .universe p, .universe .eyebrow { position: relative; z-index: 1; }
+    .big-heart { display: inline-block; font-size: 4.2rem; color: #f2b3c8; animation: pulse 2s infinite; }
+    .message { min-height: 4rem; display: grid; place-items: center; font: 1.35rem Georgia, serif; }
+    footer { border-top: 1px solid #ffffff12; text-align: center; padding: 2rem 1rem; }
+    .music { position: fixed; right: 1rem; bottom: 1rem; z-index: 10; background: #402037ee; font-size: .75rem; padding: .7rem 1rem; }
+    @media (max-width: 540px) {
+      nav { align-items: flex-start; flex-direction: column; }
+      nav .links { gap: .85rem; }
+      .section { padding: 4.2rem 1.1rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero" id="landing">
+      <div id="hero-stars" aria-hidden="true"></div>
+      <span class="floating-heart" style="left:12%;top:24%">♡</span>
+      <span class="floating-heart" style="right:12%;top:66%;animation-delay:2s">♥</span>
+      <div class="hero-content">
+        <div class="eyebrow">A little something, made with love</div>
+        <div class="hero-heart" aria-hidden="true">♡</div>
+        <h1 class="serif gradient">To My Favorite Person</h1>
+        <p>If I could choose one person to have in my life, in every lifetime, I'd choose you. Every single time.</p>
+        <button class="btn" id="open-heart">Open My Heart ♡</button>
+        <div class="hint">A little universe, just for you.</div>
+      </div>
+    </section>
+
+    <div id="main-content" class="hidden">
+      <nav>
+        <div class="brand gradient">♡ Just for you</div>
+        <div class="links">
+          <a href="#letter">The letter</a>
+          <a href="#reasons">Reasons</a>
+          <a href="#universe">Our universe</a>
+          <a href="#reminder">A reminder</a>
+        </div>
+      </nav>
+
+      <section class="section" id="letter">
+        <div class="eyebrow">A letter from my heart</div>
+        <h2 class="gradient">Words I wish I could give you in person</h2>
+        <article class="letter">
+          <div class="salutation">Hey, my love. ♡</div>
+          <p>I don't think words will ever be enough to explain how much you mean to me, but I'll always try.</p>
+          <p>You make ordinary days feel special. Even when we're far apart, you somehow find a way to make me smile. Every conversation, every laugh, every little moment with you means more to me than you probably realize.</p>
+          <p>I want you to know that you're appreciated, that you're important, and that you deserve all the happiness in the world.</p>
+          <p>I'm so grateful that you're part of my life. I hope I can keep giving you reasons to smile, just as you give me so many.</p>
+          <p>I love you, and I'm always cheering for you.</p>
+          <p class="salutation">Forever your person. ❤️</p>
+        </article>
+      </section>
+
+      <section class="section" id="reasons">
+        <div class="eyebrow">A hundred little things</div>
+        <h2 class="gradient">100 Reasons I Love You</h2>
+        <p class="subtle">One little reason at a time. There will always be more.</p>
+        <div class="panel">
+          <div class="count" id="reason-count">REASON 1 OF 100</div>
+          <div class="reason" id="reason-text">Your beautiful smile. ♡</div>
+          <button class="btn" id="next-reason">Give me another reason ♡</button>
+        </div>
+      </section>
+
+      <section class="section" id="universe">
+        <div class="universe">
+          <div id="universe-stars" aria-hidden="true"></div>
+          <div class="moon" aria-hidden="true">☾</div>
+          <div class="eyebrow">Somewhere among all the stars</div>
+          <h2 class="serif">Even if the entire universe were mine, I'd still choose you.</h2>
+          <div class="big-heart">♡</div>
+          <p class="subtle">My favorite place is wherever you are.</p>
+        </div>
+      </section>
+
+      <section class="section" id="reminder">
+        <div class="eyebrow">Whenever you need a reminder</div>
+        <h2 class="gradient">A little reminder for you</h2>
+        <p class="subtle">Press the heart. I have something to tell you.</p>
+        <div class="panel">
+          <button id="message-heart" class="big-heart" style="background:none;border:0;cursor:pointer" aria-label="Reveal a sweet message">♡</button>
+          <div class="message" id="sweet-message" aria-live="polite">There's a little message waiting for you...</div>
+          <p class="subtle">Made with all my love.</p>
+        </div>
+      </section>
+
+      <section class="section" id="final">
+        <div class="eyebrow">One last thing, my love</div>
+        <div class="big-heart">♥</div>
+        <h2 class="gradient">If there's one thing I want you to remember...</h2>
+        <p class="subtle" style="max-width:570px;margin:auto">
+          You are loved. You are appreciated. You are special.<br><br>
+          And out of all the people in this world, I'm really happy that I get to call you mine. ❤️
+        </p>
+        <button class="btn" id="final-button" style="margin-top:2rem">One More Thing... ♡</button>
+        <div id="final-message" class="hidden" style="margin-top:2.5rem">
+          <div class="serif gradient" style="font-size:clamp(2rem,6vw,3.5rem)">I LOVE YOU SO MUCHHHH ❤️</div>
+          <p class="subtle">And I hope this made you smile.</p>
+        </div>
+      </section>
+      <footer>
+        <div class="serif gradient" style="font-size:1.3rem">Made with love, just for you. ♡</div>
+        <p class="subtle">A little corner of the universe that belongs to us.</p>
+      </footer>
+    </div>
+  </main>
+
+  <button class="btn music" id="music-toggle" type="button">♫ Play soft music</button>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    function addStars(containerId, amount) {
+      const container = $(containerId);
+      for (let i = 0; i < amount; i++) {
+        const star = document.createElement("span");
+        star.className = "star";
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+        star.style.animationDelay = Math.random() * 4 + "s";
+        container.appendChild(star);
+      }
+    }
+    addStars("hero-stars", 65);
+    addStars("universe-stars", 35);
+
+    $("open-heart").addEventListener("click", () => {
+      $("landing").classList.add("hidden");
+      $("main-content").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    const reasons = [
+      "Your beautiful smile.", "The way you make me laugh.", "Your beautiful personality.",
+      "How you make simple conversations special.", "Your laugh.", "The way you make me feel appreciated.",
+      "Simply being yourself.", "Your kindness.", "The little things you do.", "How you brighten my day.",
+      "Your adorable reactions.", "The way you talk about things you love.", "Your sense of humor.",
+      "Your honesty.", "How you make me forget about a bad day.", "Your voice.",
+      "The way you make me curious about your world.", "Your unique way of thinking.",
+      "How you make me smile at my screen.", "Your little quirks.", "Your creativity.",
+      "The way you care about others.", "How you make time feel faster.", "Your thoughtful messages.",
+      "Your wonderful energy.", "The way you tell stories.", "How you make me feel understood.",
+      "Your patience.", "Your enthusiasm.", "The way you are unapologetically yourself.",
+      "Your cute expressions.", "Your determination.", "The little details I notice about you.",
+      "How you make distance feel smaller.", "The way you surprise me.", "Your beautiful heart.",
+      "Your dreams.", "Your personality that nobody else could copy.", "The happiness you bring.",
+      "Your comforting words.", "Your little jokes.", "The way you listen.", "Your confidence.",
+      "Your curiosity.", "The way you make me look forward to tomorrow.", "Your compassion.",
+      "The way you celebrate little things.", "Your unique perspective.", "Your messages that make my day.",
+      "How being around you feels special.", "Your interests.", "Your warmth.",
+      "The way you express yourself.", "Your laugh when something is really funny.",
+      "How you inspire me to be kinder.", "Your little habits.", "The way you remember things.",
+      "Your courage to be yourself.", "The joy in your voice.", "Your individuality.",
+      "The way you make ordinary moments memorable.", "Your imagination.", "Your sweet side.",
+      "Your silly side.", "The way you make me feel lucky.", "Your curiosity about the world.",
+      "How you encourage me.", "The way you bring your own kind of magic.", "Your little victories.",
+      "Your big dreams.", "The way you make me appreciate the present.", "Your thoughtfulness.",
+      "Your sense of wonder.", "Your way of making me feel welcome.",
+      "The things we have yet to discover together.", "Your beautiful individuality.",
+      "The way you make me laugh without trying.", "Your personality on a good day and a bad day.",
+      "The way you share your world with me.", "The simple fact that you're you.",
+      "Your good morning messages.", "Your goodnight messages.", "The memories we're making.",
+      "The little moments we haven't planned.", "Your ability to surprise me.", "Your beautiful mind.",
+      "Your sweet gestures.", "Your love for the things that matter to you.",
+      "How much there is still to learn about you.", "Your presence in my life.",
+      "Every conversation we share.", "The memories that make me smile.",
+      "The happiness of hearing from you.", "The person you are today.",
+      "The person you're becoming.", "The dreams I get to hear about.",
+      "The fact that no one else is quite like you.", "How special you make this connection feel.",
+      "All the little things I haven't found words for.", "Because you're you. And that's more than enough. ♡"
+    ];
+
+    let reasonIndex = 0;
+    $("next-reason").addEventListener("click", () => {
+      reasonIndex = (reasonIndex + 1) % reasons.length;
+      $("reason-count").textContent = `REASON ${reasonIndex + 1} OF 100`;
+      $("reason-text").textContent = reasons[reasonIndex];
+      $("reason-text").style.animation = "none";
+      void $("reason-text").offsetWidth;
+      $("reason-text").style.animation = "";
+      $("next-reason").textContent = reasonIndex === 99 ? "Read them all again ♡" : "Give me another reason ♡";
+    });
+
+    const messages = [
+      "You're more special than you know. ♡",
+      "I hope you're smiling right now.",
+      "You deserve every beautiful thing in this world.",
+      "Distance doesn't change how much you mean to me.",
+      "You're my favorite notification. ❤️",
+      "Never forget how appreciated you are.",
+      "I wish I could send you a thousand little smiles.",
+      "You make my days brighter.",
+      "I'm always cheering for you.",
+      "You don't have to be perfect to be loved.",
+      "I'm so glad I met you.",
+      "Here's a little reminder that someone is thinking of you. ♡"
+    ];
+    let previousMessage = -1;
+    $("message-heart").addEventListener("click", () => {
+      let next;
+      do { next = Math.floor(Math.random() * messages.length); }
+      while (next === previousMessage);
+      previousMessage = next;
+      $("sweet-message").textContent = messages[next];
+      $("sweet-message").style.animation = "none";
+      void $("sweet-message").offsetWidth;
+      $("sweet-message").style.animation = "rise .4s both";
+    });
+
+    $("final-button").addEventListener("click", () => {
+      $("final-message").classList.remove("hidden");
+      $("final-button").textContent = "♡";
+      $("final-button").disabled = true;
+    });
+
+    // A tiny original ambient tone sequence. Audio starts only after the visitor presses Play.
+    let audioContext = null;
+    let musicPlaying = false;
+    $("music-toggle").addEventListener("click", async () => {
+      const button = $("music-toggle");
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) {
+        button.textContent = "Music unavailable";
+        return;
+      }
+      if (!audioContext) {
+        audioContext = new AudioContextClass();
+        const master = audioContext.createGain();
+        master.gain.value = 0.035;
+        master.connect(audioContext.destination);
+        const notes = [261.63, 329.63, 392, 329.63, 293.66, 349.23, 440, 349.23];
+        notes.forEach((frequency, index) => {
+          const oscillator = audioContext.createOscillator();
+          const gain = audioContext.createGain();
+          oscillator.type = "sine";
+          oscillator.frequency.value = frequency;
+          gain.gain.value = 0;
+          oscillator.connect(gain);
+          gain.connect(master);
+          oscillator.start();
+          const start = audioContext.currentTime + index * 0.55;
+          gain.gain.setValueAtTime(0, start);
+          gain.gain.linearRampToValueAtTime(0.12, start + 0.25);
+          gain.gain.setTargetAtTime(0, start + 0.8, 0.35);
+        });
+      }
+      if (musicPlaying) {
+        await audioContext.suspend();
+        musicPlaying = false;
+        button.textContent = "♫ Play soft music";
+      } else {
+        await audioContext.resume();
+        musicPlaying = true;
+        button.textContent = "♫ Music on · Pause";
+      }
+    });
+  </script>
+</body>
+</html>
